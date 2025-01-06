@@ -1,44 +1,26 @@
 "use client"
 
 import { useEffect, useRef } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { userReviews } from "@/lib/user-reviews";
-import { ReviewItem } from "@/components/review-item";
-import { cn } from "@/lib/utils";
-import { faqData } from "@/lib/faq-data";
-import { FAQItem } from "@/components/faq-item";
-import { MoveRightIcon, StarIcon, ChevronDownIcon, BookOpenIcon, ClockIcon, ChartLineIcon, LanguagesIcon, WifiOffIcon, MailIcon, FacebookIcon, InstagramIcon, YoutubeIcon, TwitterIcon, Loader } from 'lucide-react';
-import { Textarea } from "@/components/ui/textarea";
 import { useFormSubmit } from "@/hooks/use-form-submit";
 
-const Header = () => {
-  return (
-    <header className="fixed top-0 left-0 right-0 bg-white bg-opacity-90 backdrop-blur-sm shadow-md z-10">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <nav>
-            <ul className="flex space-x-4">
-              <Link href="#features" className="text-gray-600 hover:text-black hover:scale-105 transition-all duration-300 ease-in-out">Features</Link>
-              <Link href="#reviews" className="text-gray-600 hover:text-black hover:scale-105 transition-all duration-300 ease-in-out">Reviews</Link>
-              <Link href="#faq" className="text-gray-600 hover:text-black hover:scale-105 transition-all duration-300 ease-in-out">FAQ</Link>
-              <Link href="#contact" className="text-gray-600 hover:text-black hover:scale-105 transition-all duration-300 ease-in-out">Contact</Link>
-              <Link href="https://www.privacypolicies.com/live/5d126c98-40e9-4366-9b76-5abb2b612373"
-                target="_blank"
-                className="text-gray-600 hover:underline hover:text-black hover:scale-105 transition-all duration-300 ease-in-out">
-                Privacy Policy
-              </Link>
-            </ul>
-          </nav>
-          <Button variant="outline" className="rounded-full hover:bg-purple-500 hover:text-white transition-all duration-300 ease-in-out group">
-            Download App <MoveRightIcon className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-all duration-500 ease-in-out group-hover:text-yellow-500" />
-          </Button>
-        </div>
-      </div>
-    </header>
-  );
-};
+import { Header } from "@/components/header";
+import { CustomCard } from "@/components/custom-card";
+import { FAQItem } from "@/components/faq-item";
+import { ReviewItem } from "@/components/review-item";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { StarIcon, ChevronDownIcon, MailIcon, FacebookIcon, InstagramIcon, YoutubeIcon, TwitterIcon, Loader } from 'lucide-react';
+
+import { faqData } from "@/lib/faq-data";
+import { userReviews } from "@/lib/user-reviews";
+import { featuresData } from "@/lib/features-data";
+import { cn } from "@/lib/utils";
+import { ColorType } from "@/types";
+
+
 
 const ScrollDownButton = ({ targetId }: { targetId: string }) => {
   const handleClick = () => {
@@ -115,62 +97,17 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-12">Features</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* База вопросов */}
-            <div className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                <BookOpenIcon className="w-6 h-6 text-purple-500" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Up-to-date Question Bank</h3>
-              <p className="text-gray-600">Access a comprehensive database of questions that closely match the actual SAAQ exam content</p>
-            </div>
-
-            {/* Режимы практики */}
-            <div className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mb-4">
-                <ClockIcon className="w-6 h-6 text-yellow-500" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Dual Practice Modes</h3>
-              <p className="text-gray-600">Choose between practice mode for learning and exam simulation for testing your readiness</p>
-            </div>
-
-            {/* Детальные объяснения */}
-            <div className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                <BookOpenIcon className="w-6 h-6 text-green-500" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Detailed Explanations</h3>
-              <p className="text-gray-600">Learn from comprehensive explanations for each answer to understand the material better</p>
-            </div>
-
-            {/* Статистика */}
-            <div className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                <ChartLineIcon className="w-6 h-6 text-blue-500" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Progress Tracking</h3>
-              <p className="text-gray-600">Monitor your performance with detailed statistics and progress indicators</p>
-            </div>
-
-            {/* Русский интерфейс */}
-            <div className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4">
-                <LanguagesIcon className="w-6 h-6 text-red-500" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Russian Interface</h3>
-              <p className="text-gray-600">Study comfortably with a fully Russian-localized user interface</p>
-            </div>
-
-            {/* Офлайн режим */}
-            <div className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-              <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
-                <WifiOffIcon className="w-6 h-6 text-indigo-500" />
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Offline Access</h3>
-              <p className="text-gray-600">Practice anywhere, anytime - no internet connection required</p>
-            </div>
+            {/* Question Bank */}
+            {featuresData.map((feature) => (
+              <CustomCard key={feature.title}
+                title={feature.title}
+                description={feature.description}
+                icon={feature.icon as React.ElementType}
+                color={feature.color as ColorType} />
+            ))}
           </div>
         </div>
-        <ScrollDownButton targetId="testimonials" />
+        <ScrollDownButton targetId="reviews" />
       </section>
 
       {/* Reviews Section - done */}
@@ -271,9 +208,6 @@ export default function Home() {
         <p className="text-center text-gray-600">
           © 2025 Quebec Driving Test Practice App. All rights reserved.
         </p>
-        <Link href="/privacy-policy" className="mt-4 block text-center text-gray-600 hover:text-black hover:underline hover:scale-105 transition-all duration-300 ease-in-out">
-          Privacy Policy
-        </Link>
         {/* Social Links */}
         <div className="flex justify-center space-x-4 mt-4">
           <Link href="https://www.facebook.com/profile.php?id=100093188888888" target="_blank" rel="noopener noreferrer">

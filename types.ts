@@ -5,3 +5,5 @@ export type Review = {
   rating: number;
   review: string;
 }
+
+export type ColorType = "purple" | "yellow" | "blue" | "red" | "indigo" | "green";
