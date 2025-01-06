@@ -24,7 +24,11 @@ const Header = () => {
               <Link href="#reviews" className="text-gray-600 hover:text-black hover:scale-105 transition-all duration-300 ease-in-out">Reviews</Link>
               <Link href="#faq" className="text-gray-600 hover:text-black hover:scale-105 transition-all duration-300 ease-in-out">FAQ</Link>
               <Link href="#contact" className="text-gray-600 hover:text-black hover:scale-105 transition-all duration-300 ease-in-out">Contact</Link>
-              <Link href="/privacy-policy" target="_blank" className="text-gray-600 hover:text-black hover:scale-105 transition-all duration-300 ease-in-out">Privacy Policy</Link>
+              <Link href="https://www.privacypolicies.com/live/5d126c98-40e9-4366-9b76-5abb2b612373"
+                target="_blank"
+                className="text-gray-600 hover:underline hover:text-black hover:scale-105 transition-all duration-300 ease-in-out">
+                Privacy Policy
+              </Link>
             </ul>
           </nav>
           <Button variant="outline" className="rounded-full hover:bg-purple-500 hover:text-white transition-all duration-300 ease-in-out group">
