@@ -7,3 +7,8 @@ export type Review = {
 }
 
 export type ColorType = "purple" | "yellow" | "blue" | "red" | "indigo" | "green";
+
+export type State = {
+  success: boolean;
+  error: string | null;
+}

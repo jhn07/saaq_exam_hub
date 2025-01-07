@@ -3,17 +3,15 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useFormSubmit } from "@/hooks/use-form-submit";
 
 import { Header } from "@/components/header";
 import { CustomCard } from "@/components/custom-card";
 import { FAQItem } from "@/components/faq-item";
 import { ReviewItem } from "@/components/review-item";
+import { ContactForm } from "@/components/contact-form";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { ChevronDownIcon, MailIcon, FacebookIcon, InstagramIcon, YoutubeIcon, TwitterIcon, Loader } from 'lucide-react';
+import { ChevronDownIcon, MailIcon, FacebookIcon, InstagramIcon, YoutubeIcon, TwitterIcon } from 'lucide-react';
 
 import { faqData } from "@/lib/faq-data";
 import { userReviews } from "@/lib/user-reviews";
@@ -44,8 +42,6 @@ const ScrollDownButton = ({ targetId }: { targetId: string }) => {
 };
 
 export default function Home() {
-  const { formData, isLoading, errorForm, handleChange, handleSubmit, checkFormData } = useFormSubmit();
-
   const sectionsRef = useRef<Array<HTMLElement | null>>([]);
 
   const setRef = (index: number) => (el: HTMLElement | null) => {
@@ -206,36 +202,7 @@ export default function Home() {
             <p className="text-center text-gray-600 mb-8">
               Have a question or want to work together? Send us a message!
             </p>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <Input type="text" placeholder="Name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-              <Input type="email" placeholder="Email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-              <Textarea placeholder="Message" className="min-h-[120px]"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-              />
-              <div className="flex justify-center">
-                <Button type="submit" className="w-[200px]" disabled={!checkFormData()}>
-                  {isLoading
-                    ? <Loader className="w-5 h-5 animate-spin" />
-                    : "Send Message"}
-                </Button>
-              </div>
-              <div className="flex justify-center mt-4">
-                {errorForm && <p className="text-red-500 text-center">{errorForm}</p>}
-              </div>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </section>
