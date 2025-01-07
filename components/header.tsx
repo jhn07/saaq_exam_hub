@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { MoveRightIcon } from "lucide-react";
 import { DownloadButton } from "./download-button";
 
 
