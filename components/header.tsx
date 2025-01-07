@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MoveRightIcon } from "lucide-react";
+import { DownloadButton } from "./download-button";
 
 
 const links = [
@@ -31,9 +32,7 @@ export const Header = () => {
 
             </ul>
           </nav>
-          <Button variant="outline" className="rounded-full hover:bg-purple-500 hover:text-white transition-all duration-300 ease-in-out group">
-            Download App <MoveRightIcon className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-all duration-500 ease-in-out group-hover:text-yellow-500" />
-          </Button>
+          <DownloadButton className="font-medium" />
         </div>
       </div>
     </header>

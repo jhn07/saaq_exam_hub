@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useFormSubmit } from "@/hooks/use-form-submit";
 
 import { Header } from "@/components/header";
@@ -12,13 +13,14 @@ import { ReviewItem } from "@/components/review-item";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { StarIcon, ChevronDownIcon, MailIcon, FacebookIcon, InstagramIcon, YoutubeIcon, TwitterIcon, Loader } from 'lucide-react';
+import { ChevronDownIcon, MailIcon, FacebookIcon, InstagramIcon, YoutubeIcon, TwitterIcon, Loader } from 'lucide-react';
 
 import { faqData } from "@/lib/faq-data";
 import { userReviews } from "@/lib/user-reviews";
 import { featuresData } from "@/lib/features-data";
 import { cn } from "@/lib/utils";
 import { ColorType } from "@/types";
+import { DownloadButton } from "@/components/download-button";
 
 
 
@@ -79,17 +81,52 @@ export default function Home() {
       <Header />
 
       {/* Main Section */}
-      <section ref={setRef(0)} className="h-screen flex items-center justify-center transition-all duration-1000 ease-in-out">
-        <div id="main" className="text-center">
+      <section className="min-h-screen flex flex-col items-center justify-center py-20 px-4">
+        <div className="text-center mb-12">
           <h1 className="text-4xl font-bold">Welcome to the</h1>
-          <h2 className="text-4xl font-bold text-yellow-500 mb-4">Quebec Driving Test Practice App</h2>
+          <h2 className="text-4xl font-bold text-yellow-500 mb-4">
+            Quebec Driving Test Practice App
+          </h2>
           <p className="text-lg text-gray-600 mb-8">Practice your driving skills with our comprehensive test preparation app.</p>
-          <Button variant="outline" className="w-64 h-14 text-lg font-medium rounded-full hover:bg-purple-500 hover:text-white transition-all duration-500 ease-in-out group">
-            Download App
-            <StarIcon className="w-5 h-5 ml-2 group-hover:animate-bounce transition-all duration-500 ease-in-out group-hover:text-yellow-500" />
-          </Button>
+          <DownloadButton className="w-64 h-14 text-lg" />
         </div>
-        <ScrollDownButton targetId="features" />
+
+        {/* Screenshots */}
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl">
+          <div className="relative aspect-[330/717] w-full max-w-[330px] mx-auto hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-xl hover:shadow-indigo-500/50 hover:rounded-2xl hover:cursor-pointer">
+            <Image
+              src="/images/Screenshot-1.png"
+              alt="Choose your difficulty level"
+              fill
+              className="rounded-2xl shadow-xl object-contain"
+            />
+          </div>
+          <div className="relative aspect-[330/717] w-full max-w-[330px] mx-auto hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-xl hover:shadow-indigo-500/50 hover:rounded-2xl hover:cursor-pointer">
+            <Image
+              src="/images/Screenshot-2.png"
+              alt="400+ updated driving tests"
+              fill
+              className="rounded-2xl shadow-xl object-contain"
+            />
+          </div>
+          <div className="relative aspect-[330/717] w-full max-w-[330px] mx-auto hidden lg:block hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-xl hover:shadow-indigo-500/50 hover:rounded-2xl hover:cursor-pointer">
+            <Image
+              src="/images/Screenshot-3.png"
+              alt="Real exam experience"
+              fill
+              className="rounded-2xl shadow-xl object-contain"
+            />
+          </div>
+          <div className="relative aspect-[330/717] w-full max-w-[330px] mx-auto hidden lg:block hover:scale-105 transition-all duration-300 ease-in-out hover:shadow-xl hover:shadow-indigo-500/50 hover:rounded-2xl hover:cursor-pointer">
+            <Image
+              src="/images/Screenshot-4.png"
+              alt="Track your progress"
+              fill
+              className="rounded-2xl shadow-xl object-contain"
+            />
+          </div>
+        </div>
+
       </section>
 
       {/* Features Section - done */}
@@ -117,7 +154,7 @@ export default function Home() {
             "flex items-center justify-between mb-8",
             userReviews.length > 5 ? "justify-between" : "justify-center"
           )}>
-            <h2 className="text-4xl font-bold">Reviews</h2>
+            <h2 className="text-4xl font-bold">User Reviews</h2>
             {userReviews.length > 5 && (
               <Link href="/all-reviews" className="text-gray-600 hover:text-black hover:scale-105 transition-all duration-300 ease-in-out">See all reviews</Link>
             )}
